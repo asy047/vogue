@@ -1,0 +1,369 @@
+@charset "UTF-8";
+@import url("http://fonts.googleapis.com/css?family=Orbitron");
+	
+	/*reset*/
+* {margin: 0; padding: 0;}
+a {text-decoration: none; color: inherit}
+li {list-style: none;}
+h1 {margin: 0;} /*nomalize css가 연결되었을 때만 적용*/
+
+body {position: fixed; width: 100%; height: 100%; background: #222; font-family: 'Orbitron', sans-serif;}
+
+.blind {
+	font-size: 0;
+	line-height: 0;
+	height: 0;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+
+/*effect*/
+section > div {
+	perspective: 800px;
+	/*article한테 주지 말고 부모한테 줘야한다.*/
+	transition: all 1s;
+}
+section > div > article {
+	transform: rotateY(180deg);
+	text-align: center;
+	overflow: hidden;
+	transition: all 1s;
+}
+section > div.on > article {
+	transform: rotateY(0deg);
+}
+
+/*text 영역*/
+section div h2 {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	transform: translateY(-50%);
+	color: #fff;
+	font-size: 40px;
+	text-shadow: 2px 2px 5px #111;
+}
+section div h3 {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	height: auto;
+	transform: translateY(-50%);
+	font-size: 24px;
+	text-shadow: 1px 1px 0px #eee;
+	transition: all .3s;
+}
+section div h3:hover {
+	letter-spacing: 3px;
+}
+
+/*article Image*/
+section > div article {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+.box1 > article:nth-child(2) {
+	background-image: url(../img/m1.jpg);
+}
+.box1 > article:nth-child(5) {
+	background-image: url(../img/m3.jpg);
+	background-size: contain;
+}
+.box1 > article:nth-child(6) {
+	background-image: url(../img/m2.jpg);
+}
+.box1 > article:nth-child(7) {
+	background-image: url(../img/m4.jpg)
+}
+.box1 > article:nth-child(10) {
+	background-image: url(../img/m5.jpg)
+}
+
+/*box2 image*/
+.box2 > article:nth-child(2) {
+	background-image: url(../img/w1.jpg)
+}
+.box2 > article:nth-child(4) {
+	background-image: url(../img/w2.jpg)
+}
+.box2 > article:nth-child(5) {
+	background-image: url(../img/w3.jpg)
+}
+.box2 > article:nth-child(6) {
+	background-image: url(../img/w4.jpg)
+}
+.box2 > article:nth-child(8) {
+	background-image: url(../img/w5.jpg)
+}
+.box2 > article:nth-child(10) {
+	background-image: url(../img/w6.jpg)
+}
+
+/*box3 image*/
+.box3 > article:nth-child(1) {
+	background-image: url(../img/k1.jpg)
+}
+.box3 > article:nth-child(3) {
+	background-image: url(../img/k2.jpg)
+}
+.box3 > article:nth-child(5) {
+	background-image: url(../img/k3.jpg)
+}
+.box3 > article:nth-child(7) {
+	background-image: url(../img/k4.jpg)
+}
+
+
+/*layout*/
+.wrap {
+	position: fixed;
+	width: 100%; height: 100%;
+	min-width: 1024px;
+	max-height: 768px;
+	perspective: 900px; /*3d 공간 반드시 부모한테 줘야한다.*/
+}
+
+/*menu 호출버튼*/
+.btnMenu {
+	position: fixed;
+	top: 40px; left: 40px;
+	display: inline-block;
+	width: 20px; height: 70px;
+	font-size: 40px;
+	color: #fff;
+	z-index: 3;
+	animation: ani .5s infinite alternate;
+	/*
+	animation: animation: 이름 / 실행시간 / 반복횟수 / 반복방향(주로 되돌리기)
+	*/
+}
+
+@keyframes ani {
+	0% {
+		transform: scale(1);
+		opacity: 1;
+		color: #fff;
+	}
+	100% {
+		transform: scale(1.5);
+		opacity: 0.5;
+	}
+}
+
+/*nav*/
+
+nav{
+	position: fixed;
+	width: 150px;
+	height: 100%;
+	background: #d4d4d4;
+	transform: rotateY(120deg);
+	transform-origin: left center; 
+	/*변형되는 요소의 중심축을 지정 - left top (기본값)*/
+	z-index: 2;
+	opacity: 0;
+	transition: all .5s;
+}
+nav.on {
+	transform: rotateY(15deg);
+	opacity: 1;
+}
+
+/*logo*/
+.logo {
+	position: absolute;
+	top: 80px; left:50%;
+	width: 100px;
+	margin-left: -50px;
+}
+.logo img {width: 100%; height: auto;}
+
+/*section*/
+section {
+	position: fixed;
+	width: 100%;
+/*	height: 100%;*/
+	height: 100vh;
+	background: #6a6a6a;
+	z-index: 1;
+	transform-origin:right center;
+	transition: all .8s;
+}
+section.on {transform: rotateY(-10deg);}
+
+/*section > div*/
+section > div {
+	position: absolute;
+	width: 100%; height: 100%;
+	opacity: 0;
+	z-index: 1;
+}
+section > div.on {
+	opacity: 1;
+	z-index: 2;
+}
+section > div article {
+	float: left;
+	height: 25%;
+}
+
+
+/*box1*/
+.box1 > article:nth-child(1) {
+	width: 50%;
+	background-color: #222;
+}
+.box1 > article:nth-child(2) {
+	width: 25%;
+	background-color: #333;
+}
+.box1 > article:nth-child(3) {
+	width: 25%;
+	background-color: #444;
+}
+.box1 > article:nth-child(4) {
+	width: 25%;
+	background-color: #555;
+}
+.box1 > article:nth-child(5) {
+	width: 25%;
+	background-color: #fff;
+}
+.box1 > article:nth-child(6) {
+	width: 50%;
+	height: 50%;
+	background-color: #fff;
+}
+.box1 > article:nth-child(7) {
+	width: 25%;
+	background-color: #333;
+	position: absolute;
+	top: 50%; left: 0;
+}
+.box1 > article:nth-child(8) {
+	width: 25%;
+	background-color: #888;
+	position: absolute;
+	top: 50%; left: 25%;
+}
+.box1 > article:nth-child(9) {
+	width: 25%;
+	background-color: #777;
+}
+.box1 > article:nth-child(10) {
+	width: 50%;
+	background-color: #ddd;
+}
+.box1 > article:nth-child(11) {
+	width: 25%;
+	background-color: #ccc;
+}
+/*동영상*/
+.box1 > article:nth-child(8) {
+	background-color: #000;
+	overflow: hidden;
+}
+.box1 > article:nth-child(8) video {
+	min-width: 100%;
+	min-height: 100%;
+	width: 100%;
+/*
+	height: 100%;
+*/
+}
+
+/*box2*/
+.box2 > article:nth-child(1) {
+	width: 25%;
+	background-color: #ddd
+}
+.box2 > article:nth-child(2) {
+	width: 25%;
+	background-color: #ccc
+}
+.box2 > article:nth-child(3) {
+	width: 50%;
+	background-color: #aaa
+}
+.box2 > article:nth-child(4) {
+	width: 25%;
+	height: 50%;
+	background-color: #999
+}
+.box2 > article:nth-child(5) {
+	width: 50%;
+	height: 50%;
+	background-color: #888
+}
+.box2 > article:nth-child(6) {
+	width: 25%;
+	background-color: #777
+}
+.box2 > article:nth-child(7) {
+	width: 25%;
+	background-color: #666
+}
+.box2 > article:nth-child(8) {
+	width: 25%;
+	background-color: #555
+}
+.box2 > article:nth-child(9) {
+	width: 25%;
+	background-color: #444
+}
+.box2 > article:nth-child(10) {
+	width: 25%;
+	background-color: #333
+}
+
+.box > article:nth-child(11) {
+	width: 25%;
+	background-color: #111
+}
+
+/*box3*/
+.box3 > article:nth-child(1) {
+	width: 50%;
+	height: 100%;
+}
+.box3 > article:nth-child(2) {
+	width: 25%;
+	background-color: #ddd;
+}
+.box3 > article:nth-child(3) {
+	width: 25%;
+}
+.box3 > article:nth-child(4) {
+	width: 50%;
+}
+.box3 > article:nth-child(5) {
+	width: 25%;
+	height: 50%;
+}
+.box3 > article:nth-child(6) {
+	width: 25%;
+	background-color: #444;
+}
+.box3 > article:nth-child(7) {
+	width: 25%;
+}
+/*gnb*/
+.gnb {
+	position: absolute;
+	top: 35%; left: 0;
+	width: 100%;
+}
+.gnb li a {
+	display: block;
+	width: 100%;
+	text-align: center;
+	line-height: 4;
+	font-size: 18px;
+	color: #000;
+	font-weight: 700;
+}
+.gnb li a:hover {
+	background-color: #000;
+	color: #fff;
+}
